@@ -1,0 +1,189 @@
+
+##### shell script####
+
+Shebang – telling the system how to run the script
+
+#!/bin/bash
+This line tells Linux:
+ “Run this script using the Bash shell.
+
+####Variables – taking input from the command line####
+
+P1=$1
+P2=$2
+$1 → first argument passed to the script
+
+$2 → second argument passed to the script
+
+Example:
+
+./script.sh devops partice
+P1 = devops
+
+P2 =  partice
+
+
+#####Simple conversation using variables####
+
+echo ${P1} : hello how are you ${P2}
+echo ${P2} : i am good $P1, how about you
+This just prints a friendly conversation using the values passed from the command line.
+
+
+###Special shell variables###
+
+echo all args passed to script : $@
+echo number of args passed to script : $#
+echo current user : $USER
+echo current user home directory path : $HOME
+echo process id of script : $$
+echo recent background process id : $!
+
+
+What these mean in real life:==============>>>
+
+Special shell variable
+
+$@ → all arguments given to the script
+
+$# → total number of arguments
+
+$USER → current logged-in user
+
+$HOME → home directory path
+
+$0 shows the name of the script itself
+
+$$ → process ID of the running script
+
+$!  → gives the PID of the last background process
+
+$? checks whether the previous command succeeded or failed
+
+
+Background process example:
+
+sleep 20 &
+echo recent background process id : $!
+sleep 20 & runs in the background
+
+$! gives the PID of the last background process
+
+
+
+##Script name##
+
+echo script name : $0
+$0 shows the name of the script itself
+
+Taking input from the user
+
+read -p "" USER_NAME
+echo user name is : $USER_NAME
+Reads username from the keyboard
+
+Stores it in USER_NAME
+
+Reading password (hidden input 🔐)
+read -sp "" PASSWORD
+-s hides the password while typing
+
+Used for secure input
+
+
+####Measuring execution time###
+
+START_TIME=$(date +%s)
+sleep 10
+END_TIME=$(date +%s)
+RUN_TIME=$(($END_TIME-$START_TIME))
+What’s happening:
+
+Script notes start time
+
+Waits for 10 seconds
+
+Notes end time
+
+Calculates how long the script ran
+
+ Data types – integers and strings
+x=10
+y= Banu
+sum=$(($x+$y))
+x is a number
+
+y is a string
+⚠️ Bash cannot add numbers and strings, so this will cause an error or unexpected result.
+
+
+####Arrays in shell###
+
+FRUITS=("mango" "watermleon" "grapes")
+This creates a list (array) of fruits
+
+echo ${FRUITS[@]}
+Prints all fruits
+
+echo ${FRUITS[0]}
+Access elements by index (starting from 0)
+
+
+######Conditions (if–elif–else)#####
+
+NUMBER=500
+if [ $NUMBER -gt 500 ]; then
+Checks if the number is greater than 500
+
+elif [ $NUMBER -eq 500 ]; then
+Checks if the number is exactly 500
+
+else
+Runs if none of the above conditions are true
+
+
+########Root user check ########
+
+USERID=$(id -u)
+id -u returns 0 for root user
+
+if [ $USERID -ne 0 ]; then
+	echo "please run with root user access"
+	exit 1
+fi
+
+If not root → stop the script
+
+Installing software (nginx example)
+
+dnf install nginx -y
+Installs nginx automatically
+
+if [ $? -ne 0 ]; then
+$? checks whether the previous command succeeded or failed
+
+If installation fails → show error
+If successful → show success message ✅
+
+
+
+#####Easy takeaway#####
+This script demonstrates:
+
+Passing arguments
+
+Using special shell variables
+
+Reading user input
+
+Background processes
+
+Arrays
+
+Conditions
+
+Execution time calculation
+
+Root permission checks
+
+Package installation
