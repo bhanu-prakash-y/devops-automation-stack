@@ -7,7 +7,7 @@ NUMBER=$100
 # -eq -> equal
 # -ne -> not equal
 
-if [$NUMBER -gt 150]; then
+if [ $NUMBER -gt 150 ]; then
     echo "give number: $NUMBER is greater than 150"
 
  else
