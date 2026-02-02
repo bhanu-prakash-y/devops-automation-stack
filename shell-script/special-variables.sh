@@ -9,6 +9,6 @@
  echo "who is running: $USER"
  echo "Home directory of current user: $HOME"
  echo "PID Of this script: $$"
- selep 20 &
+ sleep 200&
  echo "PID of the recently excuted background process: $!"
  echo "ALL args passed to script: $*"
