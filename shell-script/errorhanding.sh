@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-trap 'echo "There is an eror in $LINEND, Command: $BASH_COMMAND"' ERR 
+trap 'echo "There is an error in $LINEND, Command: $BASH_COMMAND"' ERR 
 
 USERID=$(id -u)
 LOGS_FOLDER="/var/log/shell-script"
