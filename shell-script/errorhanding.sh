@@ -13,13 +13,19 @@ fi
 
 mkdir -p $LOGS_FOLDER
 
-for Package in  $@    #sudo loop.sh nodejs mysql
+for Package in $@
+
 do
    dnf list  installed  $Packages &>>$LOGS_FILE
+
   if [ $? -ne 0 ]; then
+
      echo "$Package not installed, install now"
+
      dnf install $Package -y &>>$LOGS_FILE
+
     else 
+    
       echo "$Package already installed ..... SKIPPING" 
    fi
 done
