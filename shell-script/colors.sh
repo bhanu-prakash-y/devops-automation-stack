@@ -25,7 +25,7 @@ VALIDATE(){
     fi 
 }
 
-for Package in  $@    #sudo loop.sh nodejs mysql
+for Package in  $@ 
 do
    dnf list  installed  $Packages &>>$LOGS_FILE
   if [ $? -ne 0 ]; then
@@ -33,7 +33,7 @@ do
      dnf install $Package -y &>>$LOGS_FILE
      VALIDATE $? "$Package installation"
  else
-      echo -e "$Package already installed ..... $Y SKIPPING $N" 
+      echo -e "$Package already installed ... $Y SKIPPING $N" 
    fi
-   
+
 done
