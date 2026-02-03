@@ -27,8 +27,7 @@ do
      echo "$Package not installed, install now"
      dnf install $Package -y &>>$LOGS_FILE
      VALIDATE $? "$Package installation"
-   else
-    echo "$Package" already installed ..... SKIPPING" 
-fi
-
+ else
+      echo "$Package already installed ..... SKIPPING" 
+   fi
 done
