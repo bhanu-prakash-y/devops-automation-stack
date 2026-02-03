@@ -4,9 +4,9 @@ USERID=$(id -u)
 LOGS_FOLDER="/var/log/shell-script"
 LOGS_FILE="/var/log/shell-script/$0.log"
 R="\e[31m"
-G=\e[32m"
-Y=\e[33m"
-N=\e[0m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
 
 
 if [ $USERID -ne 0 ]; then
@@ -33,6 +33,6 @@ do
      dnf install $Package -y &>>$LOGS_FILE
      VALIDATE $? "$Package installation"
  else
-      echo "$Package already installed ..... $Y SKIPPING $N" 
+      echo -e "$Package already installed ..... $Y SKIPPING $N" 
    fi
 done
