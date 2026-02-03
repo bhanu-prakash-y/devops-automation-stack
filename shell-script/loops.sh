@@ -24,13 +24,11 @@ for Package in  $@    #sudo loop.sh nodejs mysql
 do
    dnf list  installed  $Packages &>>$LOGS_FILE
   if [ $? -ne 0 ]; then
-     echo "$Package not installed, install now "
+     echo "$Package not installed, install now"
      dnf install $Package -y &>>$LOGS_FILE
      VALIDATE $? "$Package installation"
    else
-    echo "$Package" already installed ..... SKIPPING"     
-
-
-
+    echo "$Package" already installed ..... SKIPPING" 
+fi
 
 done
