@@ -20,12 +20,12 @@ do
 
   if [ $? -ne 0 ]; then
 
-     echo "$Package not installed, install now"
+     echo "$Package not installed, installing now"
 
      dnf install $Package -y &>>$LOGS_FILE
 
     else 
     
-      echo "$Package already installed ..... SKIPPING" 
+      echo "$Package already installed ... SKIPPING" 
    fi
 done
