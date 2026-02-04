@@ -6,12 +6,12 @@ AMIID="ami-0220d79f3f480ecf5"
 
 for instance in $@
 do
-   Instances_ID=$( aws ec2 run-instances \
+   Instances_id=$( aws ec2 run-instances \
     --image-id $AMIID \
     --instance-type "t3.micro" \
     --security-group-ids $SG_ID \
     --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$instance}]" \
-    --query 'Instances[0].PrivateIpAddress' \
+    --query 'Instances[0].insatnaceid' \
     --output text )
 
      if [ $instance == "forntend" ]; then
