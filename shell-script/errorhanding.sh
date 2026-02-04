@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-trap 'echo "There is an error in $LINEND, Command: $BASH_COMMAND"' ERR 
+trap 'echo "There is an error in $LINENO, Command: $BASH_COMMAND"' ERR 
 
 USERID=$(id -u)
 LOGS_FOLDER="/var/log/shell-script"
@@ -29,3 +29,7 @@ do
       echo "$Package already installed ... SKIPPING" 
    fi
 done
+
+
+
+
