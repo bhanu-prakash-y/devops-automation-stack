@@ -16,9 +16,9 @@ do
     --query 'Instances[0].InstanceId' \
     --output text )
 
-     if [ $instance == "forntend" ]; then
+    if [ $instance == "forntend" ]; then
 
-         IP=$(
+        IP=$(
             aws ec2 describe-instances \
             --instance-ids $INSTANCE_ID \
             --query 'Reservations[].Instances[].PublicIpAddress' \
@@ -35,7 +35,7 @@ do
             record_name="$instance.$DOMAIN_NAME"
          )
         fi
-            echo "IP Adress: $IP" 
+            echo "IP Addess: $IP" 
 
             aws route53 change-resource-record-sets \
              --hosted-zone-id $ZONEID \
