@@ -6,7 +6,7 @@ AMIID="ami-0220d79f3f480ecf5"
 
 for instance in $@
 do
-   Instances_id=$( aws ec2 run-instances \
+   Instance_id=$( aws ec2 run-instances \
     --image-id $AMIID \
     --instance-type "t3.micro" \
     --security-group-ids $SG_ID \
@@ -18,7 +18,7 @@ do
 
          IP=$(
             aws ec2 describe-instances \
-            --instance-ids $Instances_id \
+            --instance-ids $Instance_id \
             --query 'Reservations[].Instances[].PublicIpAddress' \
             --output text
          )
@@ -27,7 +27,7 @@ do
 
           IP=$(
             aws ec2 describe-instances \
-            --instance-ids $Instances_id \
+            --instance-ids $Instance_id \
             --query 'Reservations[].Instances[].PrivateIpAddress' \
             --output text
             
