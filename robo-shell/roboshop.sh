@@ -5,7 +5,6 @@ AMIID="ami-0220d79f3f480ecf5"
 ZONEID="Z0726019YOHU453AVJ5U"
 DOMAIN_NAME="bhanudevops.online"
 
-
 for instance in $@
 do
    INSTANCE_ID=$( aws ec2 run-instances \
@@ -31,8 +30,8 @@ do
             --instance-ids $INSTANCE_ID \
             --query 'Reservations[].Instances[].PrivateIpAddress' \
             --output text
-            record_name="$instance.$DOMAIN_NAME"
-         )
+        )
+	     record_name="$instance.$DOMAIN_NAME"
         fi
             echo "IP Address: $IP"
 
@@ -56,8 +55,9 @@ do
                     }
                     }
                 ]
-                }
-                '
+			
+            }
+            '
                 
         echo "record updated for $instance"
 
