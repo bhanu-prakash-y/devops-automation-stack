@@ -24,7 +24,7 @@ do
 
      dnf install $Package -y &>>$LOGS_FILE
 
-    else 
+    else
     
       echo "$Package already installed ... SKIPPING" 
    fi
