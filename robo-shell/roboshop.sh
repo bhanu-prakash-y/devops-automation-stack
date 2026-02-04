@@ -32,6 +32,6 @@ do
             --output text
             
          )
-         fi
+        fi
             echo "IP Adress: $IP" 
 done
