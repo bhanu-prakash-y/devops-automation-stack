@@ -17,7 +17,6 @@ do
     --output text )
 
     if [ $instance == "frontend" ]; then
-
         IP=$(
             aws ec2 describe-instances \
             --instance-ids $INSTANCE_ID \
@@ -35,31 +34,31 @@ do
             record_name="$instance.$DOMAIN_NAME"
          )
         fi
-            echo "IP Addess: $IP" 
+            echo "IP Address: $IP"
 
             aws route53 change-resource-record-sets \
              --hosted-zone-id $ZONEID \
              --change-batch '
              {
-             "Comment": "Update A record",
-             "Changes": [
-                 {
-                   "Action": "UPSERT",
-                   "ResourceRecordSet": {
-                       "Name": "'$record_name'"
+                "Comment": "Update A record",
+                "Changes": [
+                    {
+                    "Action": "UPSERT",
+                    "ResourceRecordSet": {
+                        "Name": "'$record_name'",
                         "Type": "A",
-                        "TTL": 1
+                        "TTL": 1,
                         "ResourceRecords": [
                         {
-                          "Value": "'$IP'"
-          }
-        ]
-      }
-    }
-  ]
-}
-'           
-             
-      echo "record updated for $instance"
+                            "Value": "'$IP'"
+                        }
+                        ]
+                    }
+                    }
+                ]
+                }
+                '
+                
+        echo "record updated for $instance"
 
-done
+    done
