@@ -18,7 +18,7 @@ do
 
          IP=$(
             aws ec2 describe-instances \
-            --instance-ids $Instances_ID     \
+            --instance-ids $Instances_id     \
             --query 'Reservations[].Instances[].PublicIpAddress' \
             --output text
          )
@@ -27,7 +27,7 @@ do
 
           IP=$(
             aws ec2 describe-instances  \
-            --instance-ids $Instances_ID \
+            --instance-ids $Instances_id \
             --query 'Reservations[].Instances[].PrivateIpAddress' \
             --output text
             
