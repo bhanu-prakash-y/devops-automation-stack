@@ -13,5 +13,24 @@ do
     --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$instance}]" \
     --query 'Instances[0].PrivateIpAddress' \
     --output text)
+     if [ $instance == "forntend" ]; then
 
-done 
+         IP=$(
+            aws ec2 describe-instances \
+            --instance-ids $instance_id \
+            --query 'Reservations[].Instances[].PublicIpAddress' \
+            --output text
+         )
+
+       else 
+
+          IP=$(
+            aws ec2 describe-instances  \
+            --instance-ids $instance_id \
+            --query 'Reservations[].Instances[].PrivateIpAddress' \
+            --output text
+            
+         )
+         fi
+
+done
