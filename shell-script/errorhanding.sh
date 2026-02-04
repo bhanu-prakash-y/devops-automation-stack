@@ -17,7 +17,7 @@ mkdir -p $LOGS_FOLDER
 for Package in $@
 
 do
-    dnf list  installed  $Packages &>>$LOGS_FILE
+    dnf list  installed  $Package &>>$LOGS_FILE
 
   if [ $? -ne 0 ]; then
 
@@ -27,7 +27,7 @@ do
 
    else
     
-       echo "$Package already installed ... SKIPPING" 
+        echo "$Package already installed ... SKIPPING" 
    fi
    
 done
