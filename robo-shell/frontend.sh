@@ -23,13 +23,13 @@ VALIDATE(){
 
 
 dnf module disable nginx -y &>>$LOGS_FILE
-dnf module enable nginx:1.24 -y &>>$LOGS_FILE
+dnf module enable nginx:1.24 -y   &>>$LOGS_FILE
 dnf install nginx -y
 VALIDATE $? "Installing nginx"
 
-systemctl enable nginx   &>>$LOGS_FILE
-systemctl start nginx    &>>$LOGS_FILE
-VALIDATE $? "started  nginx"
+systemctl enable nginx &>>$LOGS_FILE
+systemctl start nginx  &>>$LOGS_FILE
+VALIDATE $? "nginx enabled and started"
 
 
 rm -rf /usr/share/nginx/html/* 
@@ -45,7 +45,7 @@ VALIDATE $? "Downloaded and unzipped"
 rm -rf /etc/nginx/nginx.conf
 
 cp $script_dir/nginx.conf /etc/nginx/nginx.conf
-VALIDATE $? "copying nginxconf file"
+VALIDATE $? "copying nginx conf file"
 
 systemctl restart nginx 
 VALIDATE $? "restarted nginx"
