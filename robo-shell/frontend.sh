@@ -27,9 +27,10 @@ dnf module enable nginx:1.24 -y   &>>$LOGS_FILE
 dnf install nginx -y
 VALIDATE $? "Installing nginx"
 
-systemctl enable nginx &>>$LOGS_FILE
-systemctl start nginx  &>>$LOGS_FILE
-VALIDATE $? "nginx enabled and started"
+systemctl enable nginx  &>>$LOGS_FILE
+systemctl start nginx 
+VALIDATE $? "Enabled and started nginx"
+
 
 
 rm -rf /usr/share/nginx/html/* 
