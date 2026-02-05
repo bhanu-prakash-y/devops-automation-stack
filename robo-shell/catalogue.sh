@@ -24,23 +24,23 @@ VALIDATE(){
 
 
 dnf module disable nodejs -y &>>$LOGS_FILE
-VALIDATE $? "Installing mongoDB server"
+VALIDATE $? "Disabling NodeJS Default Version"
 
-dnf module enable nodejs:20 -y 
-VALIDATE $? "Enable MongoDB"
+dnf module enable nodejs:20 -y &>>$LOGS_FILE
+VALIDATE $? "Enable NodeJS"
 
-systemctl start mongod 
-VALIDATE $? "Start MongoB"
+dnf install nodejs -y &>>$LOGS_FILE
+VALIDATE $? "Install NodeJS"
 
 
-useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop  &>>$LOGS_FILE
 VALIDATE $? "Creating user"
 
 mkdir /app 
 VALIDATE $? "Creating app dir"
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip  &>>$LOGS_FILE
 cd /app 
 unzip /tmp/catalogue.zip
 
-VALIDATE $? "Downloadin catalgoue file"
+VALIDATE $? "Downloading catalgoue code"
