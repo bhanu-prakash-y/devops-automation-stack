@@ -63,7 +63,8 @@ dnf install mysql -y
 VALIDATE $? "install my sql"
 
 mysql -h $mysql_host -uroot -pRoboShop@1 -e 'use cities'
-if [$? -ne 0 ]; then
+
+if [ $? -ne 0 ]; then
 
     mysql -h $mysql_host -uroot -pRoboShop@1 < /app/db/schema.sql
     mysql -h $mysql_host -uroot -pRoboShop@1 < /app/db/app-user.sql 
