@@ -3,7 +3,7 @@
 USERID=$(id -u)
 LOGS_FOLDER="/var/log/shell-roboshop"
 LOGS_FILE="$LOGS_FOLDER/$0.log"
-script_dir=$pwd
+script_dir=$PWD
 mongodb_host=$mongodb.bhanudevops.online
 
 
@@ -54,16 +54,15 @@ VALIDATE $? "moving to app directory"
 rm -rf /app/*
 VALIDATE $? "remove the exit code"
 
-unzip /tmp/catalogue.zip
+unzip /tmp/catalogue.zip &>>$LOGS_FILE
 VALIDATE $? "Unzip catalogue code"
 
 
-npm install 
-VALIDATE $? "Installing dependencie"
+npm install  &>>$LOGS_FILE
+VALIDATE $? "Installing dependencies"
 
 cp $script_dir/catalogue.service /etc/systemd/system/catalogue.service
-
-VALIDATE $? "create systemctl service"
+VALIDATE $? "created systemctl service"
 
 systemctl daemon-reload
 systemctl enable catalogue 
