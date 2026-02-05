@@ -3,6 +3,8 @@
 USERID=$(id -u)
 LOGS_FOLDER="/var/log/shell-roboshop"
 LOGS_FILE="$LOGS_FOLDER/$0.log"
+script_dir=$pwd
+mongodb_host=$mongodb.bhanudevops.online
 
 
 if [ $USERID -ne 0 ]; then
@@ -44,7 +46,32 @@ mkdir -p /app
 VALIDATE $? "Creating app dir"
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip  &>>$LOGS_FILE
-cd /app 
-unzip /tmp/catalogue.zip
-
 VALIDATE $? "Downloading catalgoue code"
+
+cd /app 
+VALIDATE $? "moving to app directory"
+
+rm -rf /app/*
+VALIDATE $? "remove the exit code"
+
+unzip /tmp/catalogue.zip
+VALIDATE $? "Unzip catalogue code"
+
+
+npm install 
+VALIDATE $? "Installing dependencie"
+
+cp $script_dir/catalogue.service /etc/systemd/system/catalogue.service
+
+VALIDATE $? "create systemctl service"
+
+systemctl daemon-reload
+systemctl enable catalogue 
+systemctl start catalogue
+VALIDATE $? "starting and enabling catalogue"
+
+cp  $script_dir/mongo.repo /etc/yum.repos.d/mongo.repo
+dnf install mongodb-mongosh -y
+
+
+mongosh --host $mongodb_host </app/db/master-data.js
