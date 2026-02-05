@@ -27,10 +27,10 @@ cp $script_dir/rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo
 VALIDATE $? "added rabbitmq"
 
 
-dnf install rabbitmq-server -y
+dnf install rabbitmq-server -y &>>$LOGS_FILE
 VALIDATE $? "install server"
 
-systemctl enable rabbitmq-server
+systemctl enable rabbitmq-server &>>$LOGS_FILE
 systemctl start rabbitmq-server
 VALIDATE $? "enabled and started server"
 
