@@ -1,13 +1,14 @@
+#!/bin/bash
 
 USERID=$(id -u)
 LOGS_FOLDER="/var/log/shell-roboshop"
 LOGS_FILE="$LOGS_FOLDER/$0.log"
 script_dir=$PWD
-mongodb_host=$mongodb.bhanudevops.online
+mongodb_host=mongodb.bhanudevops.online
 
 
 if [ $USERID -ne 0 ]; then
-    echo  "please run this script root acccess" | tee -a $LOGS_FILE
+    echo  "Please run this script root acccess" | tee -a $LOGS_FILE
     exit 1
 fi
 
