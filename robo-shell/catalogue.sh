@@ -73,10 +73,6 @@ cp  $script_dir/mongo.repo /etc/yum.repos.d/mongo.repo
 dnf install mongodb-mongosh -y
 
 
-mongosh --host $mongodb_host </app/db/master-data.js
-
-
-
 INDEX=$(mongosh --host $MONGODB_HOST --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
 
 if [ $INDEX -le 0 ]; then
