@@ -4,7 +4,7 @@ USERID=$(id -u)
 LOGS_FOLDER="/var/log/shell-roboshop"
 LOGS_FILE="$LOGS_FOLDER/$0.log"
 script_dir=$PWD
-mysql_host=$mysql.bhanudevops.online
+mysql_host=mysql.bhanudevops.online
 
 if [ $USERID -ne 0 ]; then
     echo  "please run this script root acccess" | tee -a $LOGS_FILE
@@ -37,4 +37,4 @@ VALIDATE $? "enabled and started server"
 
 rabbitmqctl add_user roboshop roboshop123
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
-VALIDATE $? "created user and given permission"
+VALIDATE $? "created user and give permission"
