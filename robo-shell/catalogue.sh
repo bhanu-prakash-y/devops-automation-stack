@@ -73,14 +73,4 @@ cp  $script_dir/mongo.repo /etc/yum.repos.d/mongo.repo
 dnf install mongodb-mongosh -y
 
 
-INDEX=$(mongosh --host $mongodb_host --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
-
-if [ $INDEX -le 0 ]; then
-    mongosh --host $mongodb_host </app/db/master-data.js
-    VALIDATE $? "Loading products"
-else
-    echo  "Products already loaded ... SKIPPING"
-fi
-
-systemctl restart catalogue
-VALIDATE $? "Restarting catalogue"
+mongosh --host $mongodb_host </app/db/master-data.js
