@@ -78,4 +78,4 @@ fi
 
 systemctl enable shipping 
 systemctl start shipping
-VALIDATE $? "start shipping" 
+VALIDATE $? "enable and tarted shipping" 
