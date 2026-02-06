@@ -31,7 +31,7 @@ if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop  &>>$LOGS_FILE
     VALIDATE $? "Creating user"
 else 
-     echo "Roboshop user already exit ...... SKIPPING"
+     echo "Roboshop user already exit ... SKIPPING"
 fi     
 
 mkdir -p /app 
@@ -61,4 +61,4 @@ VALIDATE $? "created systemctl service"
 systemctl daemon-reload
 systemctl enable payment 
 systemctl start payment
-VALIDATE $? "start payments"
+VALIDATE $? "enable and start payment"
