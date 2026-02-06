@@ -4,7 +4,7 @@ USERID=$(id -u)
 LOGS_FOLDER="/var/log/shell-roboshop"
 LOGS_FILE="$LOGS_FOLDER/$0.log"
 script_dir=$PWD
-mongodb_host=$mongodb.bhanudevops.online
+mongodb_host=mongodb.bhanudevops.online
 
 
 if [ $USERID -ne 0 ]; then
@@ -39,7 +39,7 @@ if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop  &>>$LOGS_FILE
     VALIDATE $? "Creating user"
 else 
-     echo "Roboshop user already exit ...... SKIPPING"
+     echo "Roboshop user already exit ... SKIPPING"
 fi     
 
 mkdir -p /app 
