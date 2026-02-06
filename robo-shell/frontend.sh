@@ -29,7 +29,7 @@ VALIDATE $? "Installing nginx"
 
 systemctl enable nginx  &>>$LOGS_FILE
 systemctl start nginx 
-VALIDATE $? "Enabled and started nginx"
+VALIDATE $? "Enabling and started nginx"
 
 
 
