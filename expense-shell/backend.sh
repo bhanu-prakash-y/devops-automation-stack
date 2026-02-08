@@ -81,8 +81,8 @@ mysql -h $mysqldb_host -uroot -pExpenseApp@1 < /app/schema/backend.sql
 if [ $? -ne 0 ]; then
 
      mysql -h $mysqldb_host -uroot -pExpenseApp@1 < /app/schema/backend.sql
-     
-    VALIDATE $? "install my sql"
+
+    VALIDATE $? "my sql"
 
 else 
    echo "data is already loaded"
