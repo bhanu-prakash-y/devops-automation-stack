@@ -78,6 +78,17 @@ VALIDATE $? "installing"
 
 mysql -h $mysqldb_host -uroot -pExpenseApp@1 < /app/schema/backend.sql
 
+if [ $? -ne 0 ]; then
+
+     mysql -h $mysqldb_host -uroot -pExpenseApp@1 < /app/schema/backend.sql
+     
+    VALIDATE $? "install my sql"
+
+else 
+   echo "data is already loaded"
+fi    
+
+
 
 systemctl restart backend
 VALIDATE $? "restart backend"
