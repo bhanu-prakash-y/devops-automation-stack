@@ -3,7 +3,7 @@
 USERID=$(id -u)
 LOGS_FOLDER="/var/log/shell-expense"
 LOGS_FILE="$LOGS_FOLDER/$0.log"
-
+mysqldb_host=mysql.bhanudevops.online
 
 if [ $USERID -ne 0 ]; then
     echo  "please run this script root acccess" | tee -a $LOGS_FILE
@@ -32,3 +32,4 @@ VALIDATE $? "start my sql"
 mysql_secure_installation --set-root-pass RoboShop@1
 VALIDATE $? "Restarting set up root"
 
+mysql -h $mysqldb_host -u root -pRoboShop@1
