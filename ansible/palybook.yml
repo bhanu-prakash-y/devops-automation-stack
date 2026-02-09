@@ -3,4 +3,3 @@
   tasks:
   - name: ping the web server
     anisble.builtin.ping:
-
